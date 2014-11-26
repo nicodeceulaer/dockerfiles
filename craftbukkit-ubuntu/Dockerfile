@@ -1,28 +1,21 @@
-FROM ubuntu:trusty
+FROM ubuntu:utopic
 # FROM ubuntu
 # trusty ("14.04, Trusty Tahr")
+# utopic ("14.10", "Utopic Unicorn" )
 
-MAINTAINER Devon Hubner <devon@hubner.org>
+MAINTAINER Nico De Ceulaer <nicodeceulaer@gmail.com>
 
 RUN echo -e "\n\n\033[32;1m###############################################################\n\033[32;1m##\n\033[32;1m## \033[33;1mBUKKIT MINECRAFT SERVER\n\033[32;1m##\n\033[32;1m###############################################################\n\n\033[37;0m"
 
 
 RUN echo -e "\n\n\033[37;1m  * \033[33;1mAdding Universe to sources.list\033[37;0m"
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
-RUN apt-get update
+# NDC # RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+# NDC # RUN apt-get update
 # RUN apt-get upgrade -y
-
 
 RUN echo -e "\n\n\033[37;1m  * \033[33;1mAdding webupd8team PPA for Java\033[37;0m"
 
-# for <= 12.04
-# sudo apt-get install python-software-properties
-
-# for >= 12.10
-# sudo apt-get install software-properties-common
-
-#RUN apt-get install -y python-software-properties
 RUN apt-get install -y software-properties-common python-software-properties
 RUN add-apt-repository ppa:webupd8team/java -y
 
@@ -71,6 +64,4 @@ WORKDIR /opt/minecraft
 CMD echo -e "\n\n\033[32;1m###############################################################\n\033[32;1m##\n\033[32;1m## \033[33;1mBUKKIT MINECRAFT SERVER\n\033[32;1m##\n\033[32;1m###############################################################\n\n\033[37;0m"
 CMD echo -e "\n\n\033[37;1m  * \033[33;1mStarting Bukkit Minecraft Server \033[37;1m... \033[37;0m"
 CMD (cd /opt/minecraft && java -Xmx1024M -Xms768M -jar craftbukkit.jar nogui)
-
-
 
